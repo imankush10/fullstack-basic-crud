@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Card from "./components/Card";
 import CardEdit from "./components/CardEdit";
 import { v4 as uuidv4 } from "uuid";
+const BASE_URL = process.env.REACT_APP_BASE_URL
 let fetchData;
 
 const App = () => {
@@ -15,7 +16,7 @@ const App = () => {
       key
     };
 
-    const response = await fetch("http://localhost:3000/addCard", {
+    const response = await fetch(`${BASE_URL}/addCard`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +28,7 @@ const App = () => {
 
   async function deleter(key) {
     const [deletedCard] = cards.filter((card) => card.key == key);
-    const response = await fetch("http://localhost:3000/deleteCard", {
+    const response = await fetch(`${BASE_URL}/deleteCard`, {
       method:'DELETE',
       headers:{
         "Content-Type":"application/json"
@@ -47,7 +48,7 @@ const App = () => {
 
   useEffect(() => {
     fetchData = async () => {
-      const res = await fetch("http://localhost:3000/cards");
+      const res = await fetch(`${BASE_URL}/cards`);
       const data = await res.json();
       setCards(data);
     };
