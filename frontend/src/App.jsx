@@ -47,6 +47,7 @@ const App = () => {
   }
 
   useEffect(() => {
+    if(cards.length==0) setNeww(false);
     fetchData = async () => {
       const res = await fetch(`${BASE_URL}/cards`);
       const data = await res.json();
