@@ -35,7 +35,7 @@ const card = ({
       </div>
 
       <div className="flex flex-col gap-5 mt-5">
-        <SocialButton social={social} socialLink={socialLink}/>
+        {social?<SocialButton social={social} socialLink={socialLink}/>:null}
         <div className="flex gap-10">
           <button
             className="bg-white px-3 text-center py-2 rounded-md font-semibold text-black"
